@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.koreait.board.BoardVO" %>    
+<%
+	List<BoardVO> data = (List<BoardVO>)request.getAttribute("data");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,19 +17,25 @@
 		<tr>
 			<th>No</th>
 			<th>제목</th>			
-		</tr>
-		<tr>
-			<td>3</td>
-			<td><a href="/BoardDetail?i_board=3">반갑습니다.</a></td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td><a href="/BoardDetail?i_board=2">Hello</a></td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td><a href="/BoardDetail?i_board=1">안녕하세요</a></td>
-		</tr>
+		</tr>		
+		<% for(BoardVO vo : data) { %>
+			<tr>
+				<td><%=vo.getI_board() %></td>
+				<td>
+					<a href="/BoardDetail?i_board=<%=vo.getI_board()%>">
+						<%=vo.getTitle() %>
+					</a>
+				</td>				
+			</tr>
+		<% } %>
 	</table>
 </body>
 </html>
+
+
+
+
+
+
+
+

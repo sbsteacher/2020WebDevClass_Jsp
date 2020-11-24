@@ -7,33 +7,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/BoardDetail")
-public class BoardDetail extends HttpServlet {
+@WebServlet("/BoardReg")
+public class BoardRegSer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-          
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String strI_board = request.getParameter("i_board");	
-		System.out.println("i_board : " + strI_board);
-		
-		//DB통신
-		BoardDAO dao = BoardDAO.getInstance();
-		int i_board = Integer.parseInt(strI_board);		
-		BoardVO data = dao.selBoard(i_board);
-		
-		//값 전달 servlet > jsp
-		request.setAttribute("data", data);
-		
-		String jsp = "/WEB-INF/jsp/boardDetail2.jsp";		
+		String jsp = "/WEB-INF/jsp/boardReg.jsp";
 		request.getRequestDispatcher(jsp).forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		String strI_board = request.getParameter("i_board");
+		String title = request.getParameter("title");
+		String ctnt = request.getParameter("ctnt");
+		
+		System.out.println("i_board : " + strI_board);
+		System.out.println("title : " + title);
+		System.out.println("ctnt : " + ctnt);
+		
+		response.sendRedirect("/BoardList");
 	}
 
 }
