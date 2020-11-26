@@ -28,10 +28,27 @@ public class BoardDAO2 {
 	}
 	
 	public void insBoard(BoardDTO vo) {
+		vo.setI_board(list.size() + 1);
 		list.add(vo);
 	}
 	
 	public List<BoardDTO> selBoardList() {
 		return list;
 	}
+	
+	public BoardDTO selBoard(int i_board) {
+		for(BoardDTO dto : list) {
+			if(dto.getI_board() == i_board) {
+				return dto;
+			}
+		}
+		return null;
+	}
 }
+
+
+
+
+
+
+

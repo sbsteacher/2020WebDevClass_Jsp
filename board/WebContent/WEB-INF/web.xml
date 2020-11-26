@@ -9,4 +9,23 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 한글설정 필터추가 --> 
+  <filter> 
+  	<filter-name>SetCharacterEncoding</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  	<init-param> 
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>SetCharacterEncoding</filter-name>
+  	<url-pattern>/*</url-pattern> 
+  </filter-mapping> 
+  <!-- 한글설정 END -->
+
+
+  
 </web-app>
