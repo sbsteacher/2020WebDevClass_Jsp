@@ -44,6 +44,25 @@ public class BoardDAO2 {
 		}
 		return null;
 	}
+	
+	public void delBoard(int i_board) {
+		for(BoardDTO dto : list) {
+			if(dto.getI_board() == i_board) {
+				list.remove(dto);
+				return;
+			}
+		}
+	}
+	
+	public void modBoard(BoardDTO param) {
+		for(BoardDTO dto : list) {
+			if(dto.getI_board() == param.getI_board()) {
+				dto.setTitle(param.getTitle());
+				dto.setCtnt(param.getCtnt());
+				return;
+			}
+		}
+	}
 }
 
 
