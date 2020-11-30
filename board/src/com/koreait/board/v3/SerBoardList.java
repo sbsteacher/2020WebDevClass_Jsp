@@ -14,9 +14,10 @@ public class SerBoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    
-    	BoardDAO3 dao2 = BoardDAO3.getInstance();
-    	List<BoardDTO3> list = dao2.selBoardList();
+    	
+    	List<BoardDTO3> list = BoardDAO3.selBoardList();
     	request.setAttribute("list", list);
+    	
     	Utils3.forward("bList", request, response);
 	}
 }

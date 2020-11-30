@@ -31,7 +31,11 @@ public class DbUtils {
 		
 	}
 	public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
+		if(rs != null) {
+			try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+		}
 		
+		close(con, ps);
 	}
 }
 

@@ -18,12 +18,11 @@ public class SerBoardDetail extends HttpServlet {
 			return;
 		} 
 		System.out.println("i_board : " + i_board);
-		
+		/*
 		BoardDAO3 dao = BoardDAO3.getInstance();
-		BoardDTO3 dto = dao.selBoard(i_board);
-		
+		BoardDTO3 dto = dao.selBoard(i_board);		
 		request.setAttribute("item", dto);
-		
+		*/
 		Utils3.forward("bDetail", request, response);
 		
 	}
