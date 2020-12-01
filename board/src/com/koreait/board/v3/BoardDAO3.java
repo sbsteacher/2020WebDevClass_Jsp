@@ -3,6 +3,7 @@ package com.koreait.board.v3;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,16 +73,48 @@ public class BoardDAO3 {
 		return list;
 	}
 	
-	public BoardDTO3 selBoard(int i_board) {
+	public static BoardDTO3 selBoard(int i_board) {
+		BoardDTO3 dto = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
-		return null;
+		String sql = " SELECT i_board, title, ctnt, r_dt "
+				+ " FROM t_board "
+				+ " WHERE i_board = ? ";
+		
+		try {
+			con = DbUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, i_board);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				dto = new BoardDTO3();
+								
+				String title = rs.getNString("title");
+				String ctnt = rs.getNString("ctnt");
+				String r_dt = rs.getString("r_dt");
+								
+				dto.setI_board(i_board);
+				dto.setTitle(title);
+				dto.setCtnt(ctnt);
+				dto.setR_dt(r_dt);
+			}			
+		} catch (Exception e) {		
+			e.printStackTrace();
+		} finally {
+			DbUtils.close(con, ps, rs);
+		}
+		return dto;
 	}
 	
-	public void delBoard(int i_board) {
+	public static void delBoard(int i_board) {
 		
 	}
 	
-	public void modBoard(BoardDTO3 param) {
+	public static void modBoard(BoardDTO3 param) {
 		
 	}
 }
