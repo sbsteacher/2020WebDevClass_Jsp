@@ -13,10 +13,9 @@ public class SerBoardDel extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int i_board = Utils3.getIntParam(request, "i_board");
-		/*
-		BoardDAO3 dao = BoardDAO3.getInstance();
-		dao.delBoard(i_board);
-		*/
+				
+		int result = BoardDAO3.delBoard(i_board);
+		
 		response.sendRedirect("/v3/bList");
 		
 	}

@@ -110,12 +110,55 @@ public class BoardDAO3 {
 		return dto;
 	}
 	
-	public static void delBoard(int i_board) {
+	public static int delBoard(int i_board) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
 		
+		String sql = " DELETE FROM t_board WHERE i_board = ? ";
+		
+		try {
+			con = DbUtils.getCon();
+			ps = con.prepareStatement(sql);			
+			ps.setInt(1, i_board);
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally {
+			DbUtils.close(con, ps);
+		}
+		
+		return result;
 	}
 	
-	public static void modBoard(BoardDTO3 param) {
+	public static int updBoard(BoardDTO3 vo) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
 		
+		String sql = " UPDATE t_board "
+				+ " SET title = ? "
+				+ " , ctnt = ? "
+				+ " WHERE i_board = ? ";
+		
+		try {
+			con = DbUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setNString(1, vo.getTitle());
+			ps.setNString(2, vo.getCtnt());
+			ps.setInt(3, vo.getI_board());
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally {
+			DbUtils.close(con, ps);
+		}
+		
+		return result;
 	}
 }
 

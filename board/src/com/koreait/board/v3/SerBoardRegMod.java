@@ -20,11 +20,8 @@ public class SerBoardRegMod extends HttpServlet {
 		
 		System.out.println("i_board : " + i_board);
 		if(i_board > 0) { //수정
-			/*
-			BoardDAO3 dao = BoardDAO3.getInstance();
-			BoardDTO3 dto = dao.selBoard(i_board);
+			BoardDTO3 dto = BoardDAO3.selBoard(i_board);
 			request.setAttribute("item", dto);
-			*/
 		}
 		
 		Utils3.forward("bRegMod", request, response);
@@ -43,13 +40,15 @@ public class SerBoardRegMod extends HttpServlet {
 		dto.setR_dt(r_dt);
 					
 		int result = 0;
-		if(i_board > 0) {
+		if(i_board > 0) { //글수정
 			dto.setI_board(i_board);
-		} else {
+			result = BoardDAO3.updBoard(dto);
+			
+		} else { //글쓰기
 			result = BoardDAO3.insBoard(dto);
 		}		
 				
-		response.sendRedirect("/v3/bDetail?i_board=" + i_board);
+		response.sendRedirect("/v3/bList");
 	}
 
 }

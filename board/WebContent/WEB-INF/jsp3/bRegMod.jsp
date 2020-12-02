@@ -25,10 +25,7 @@
 			</div>
 			<div>
 				내용 : <textarea name="ctnt">${item.ctnt}</textarea>
-			</div>
-			<div>
-				날짜 : <input type="date" name="r_dt" value="${item.r_dt}">
-			</div>
+			</div>		
 			<div>
 				<c:if test="${param.i_board == 0}">
 					<input type="submit" value="글등록">
