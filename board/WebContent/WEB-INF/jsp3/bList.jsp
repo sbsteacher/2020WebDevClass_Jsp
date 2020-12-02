@@ -34,6 +34,11 @@
 			</table>
 		</div>
 	</div>
+	<script>	
+		<c:if test="${msg != null}">
+			alert('${msg}');
+		</c:if>
+	</script>
 </body>
 </html>
 

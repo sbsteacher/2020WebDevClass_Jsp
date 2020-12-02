@@ -16,6 +16,11 @@ public class SerBoardDel extends HttpServlet {
 				
 		int result = BoardDAO3.delBoard(i_board);
 		
+		if(result == 0) {
+			response.sendRedirect("/v3/bList?err=del");
+			return;
+		}
+		
 		response.sendRedirect("/v3/bList");
 		
 	}

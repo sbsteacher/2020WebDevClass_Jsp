@@ -15,8 +15,10 @@
 </title>
 </head>
 <body>
-	<div>
-		<form action="/v3/bRegMod" method="post">
+	<div>		
+		<div style="color:red;">${msg}</div>
+	
+		<form action="/v3/bRegMod" method="post" id="frm" onsubmit="return chk();">
 			<div>
 				글번호 : <input type="text" name="i_board" value="${param.i_board}" readonly>
 			</div>
@@ -37,5 +39,18 @@
 			</div>
 		</form>
 	</div>
+	<script>
+		function chk() {
+			var frm = document.querySelector('#frm');			
+			console.log(frm.i_board.value);
+			return false;
+		}
+	</script>
 </body>
 </html>
+
+
+
+
+
+

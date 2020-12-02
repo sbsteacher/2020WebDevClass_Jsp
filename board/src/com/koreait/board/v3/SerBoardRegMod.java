@@ -43,11 +43,20 @@ public class SerBoardRegMod extends HttpServlet {
 		if(i_board > 0) { //글수정
 			dto.setI_board(i_board);
 			result = BoardDAO3.updBoard(dto);
-			
-		} else { //글쓰기
-			result = BoardDAO3.insBoard(dto);
-		}		
-				
+			if(result == 0) {
+				request.setAttribute("msg", "수정을 실패하였습니다.");
+				doGet(request, response);
+				return;
+			}
+			response.sendRedirect("/v3/bDetail?i_board=" + i_board);
+			return;
+		} 
+		result = BoardDAO3.insBoard(dto);
+		if(result == 0) {
+			request.setAttribute("msg", "등록을 실패하였습니다.");
+			doGet(request, response);
+			return;
+		}
 		response.sendRedirect("/v3/bList");
 	}
 
